@@ -338,7 +338,7 @@ def negamax(board_old, board_new, depth, alpha, beta, color):
             break
     return best_value
 
-def move_function(board, depth=7):
+def move_function(board, depth=3):
     def search(move):
         B = board.peek_move(move)
         if B.active == board.active:

@@ -1,42 +1,19 @@
-#A checkers AI implementation based on TD Backgammon 
+#Pretraining the weights
 
 from pybrain.tools.customxml.networkreader import NetworkReader
 from pybrain.tools.customxml.networkwriter import NetworkWriter
 from pybrain.datasets import SupervisedDataSet                                  
 from pybrain.supervised.trainers import BackpropTrainer
+from pybrain.tools.shortcuts import buildNetwork
+import random
 
 # Constants
 BLACK, WHITE = 0, 1
 #neural net 
-net = NetworkReader.readFrom('SynapsemonPie/synapsemon.xml') 
+net = buildNetwork(97, 80, 1)
 
 def move_function(board):
     global net  
-    best_max_move = None 
-    max_value = -1
-    best_min_move = None
-    min_value = 2
-
-    #value is the chance of black winning
-    for m in board.get_moves():
-        nextboard = board.peek_move(m)
-        value = net.activate(board_to_input(nextboard))
-        if nextboard.is_over():
-            #black wins
-            if nextboard.active == WHITE: 
-                value = 1 
-            else:
-                value = 0
-        if value > max_value: 
-            max_value = value
-            best_max_move = m 
-        if value < min_value:
-            min_value = value
-            best_min_move = m
-
-
-    ds = SupervisedDataSet(96, 1)
-    best_move = None 
 
     #active player
     if board.active == BLACK:
@@ -48,10 +25,10 @@ def move_function(board):
 
     trainer = BackpropTrainer(net, ds)
     trainer.train()
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon.xml')
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_copy.xml')
-    print(str(min_value) + " " + str(max_value)) 
-    return best_move 
+    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_primer1.xml')
+    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_primer1_copy.xml')
+
+    return random.choice(board.get_moves()) 
 
 def board_to_input(board):
     EMPTY = -1
@@ -102,4 +79,4 @@ def board_to_input(board):
     else:
         inpt[96] = 0
 
-    return inpt  
+    return inpt 
