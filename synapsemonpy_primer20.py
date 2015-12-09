@@ -11,7 +11,7 @@ import random
 BLACK, WHITE = 0, 1
 #neural net 
 #20, 50, 80, 110, 140
-net = buildNetwork(97, 20, 1)
+net = NetworkReader.readFrom('SynapsemonPie/synapsemon_primer20.xml') 
 
 def move_function(board):
     global net

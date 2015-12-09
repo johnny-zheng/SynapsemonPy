@@ -11,7 +11,7 @@ import random
 BLACK, WHITE = 0, 1
 #neural net 
 #20, 50, 80, 110, 140
-net = buildNetwork(97, 80, 1)
+net = NetworkReader.readFrom('SynapsemonPie/synapsemon_primer80.xml') 
 
 def move_function(board):
     global net
@@ -39,7 +39,7 @@ def move_function(board):
                 white_material=white_material+1
     
     board_val = black_material/(black_material+white_material)
-    
+
     #create a new dataset. Add a sample with board as input, value as output
     ds = SupervisedDataSet(97, 1)
     ds.addSample(boardString, board_val)
