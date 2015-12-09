@@ -26,13 +26,13 @@ def move_function(board):
     black_material=0
     white_material=0
     for i in range(32):
-        isKing=boardString[i+64]=='1'
-        if boardString[i]=='1':
+        isKing=boardString[i+64]== 1
+        if boardString[i]== 1:
             if isKing:
                 black_material=black_material+2
             else: 
                 black_material=black_material+1
-        if boardString[i+32]=='1':
+        if boardString[i+32]== 1:
             if isKing:
                 white_material=white_material+2
             else:
@@ -56,7 +56,7 @@ def board_to_input(board):
     WHITE_KING = 3
 
     if board.active == BLACK:
-        black_kings = board.backwa rd[board.active]
+        black_kings = board.backward[board.active]
         black_men = board.forward[board.active] ^ black_kings
         white_kings = board.forward[board.passive]
         white_men = board.backward[board.passive] ^ white_kings
@@ -94,7 +94,7 @@ def board_to_input(board):
         if state[i] == BLACK_KING or state[i] == WHITE_KING:
             inpt[i + 64] = 1
 
-    if board.active = BLACK:
+    if board.active == BLACK:
         inpt[96] = 1
     else:
         inpt[96] = 0
