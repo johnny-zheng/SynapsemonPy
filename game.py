@@ -173,10 +173,10 @@ def main():
                     while B.active == current_player and not B.is_over():
                         B.make_move(cpu_2.make_move(B))
                     current_player = B.active
-                if B.active == WHITE:
-                    print "Congrats Black, you win!"
-                else:
-                    print "Congrats White, you win!"
+                # if B.active == WHITE:
+                #     print "Congrats Black, you win!"
+                # else:
+                #     print "Congrats White, you win!"
 
 
 

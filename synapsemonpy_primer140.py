@@ -45,8 +45,8 @@ def move_function(board):
     ds.addSample(boardString, board_val)
     trainer = BackpropTrainer(net, ds)
     trainer.train()
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_primer1.xml')
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_primer1_copy.xml')
+    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_primer140.xml')
+    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_primer140_copy.xml')
 
     return random.choice(board.get_moves()) 
 
