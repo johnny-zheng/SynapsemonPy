@@ -181,10 +181,10 @@ def main():
                 else:
                     cpu_1.inform_endgame(B, False)
                     cpu_2.inform_endgame(B, False)
-                if B.active == WHITE:
-                    print "Congrats Black, you win!"
-                else:
-                    print "Congrats White, you win!"
+                # if B.active == WHITE:
+                #     print "Congrats Black, you win!"
+                # else:
+                #     print "Congrats White, you win!"
 
 
 
