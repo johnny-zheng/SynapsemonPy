@@ -151,11 +151,11 @@ def main():
         agent_module = raw_input("Enter name of first agent module: ");
         __import__(agent_module)
         agent_module = sys.modules[agent_module]
-        cpu_1 = agent.CheckersAgent(agent_module.move_function)
+        cpu_1 = agent.CheckersAgent(agent_module.move_function, agent_module.end_function)
         agent_module = raw_input("Enter name of second agent module: ");
         __import__(agent_module)
         agent_module = sys.modules[agent_module]
-        cpu_2 = agent.CheckersAgent(agent_module.move_function)
+        cpu_2 = agent.CheckersAgent(agent_module.move_function, agent_module.end_function)
         debug = raw_input("Would you like to step through game play? [Y/N]: ")
         debug = 1 if debug.lower()[0] == 'y' else 0
         while True:
@@ -165,7 +165,8 @@ def main():
                 print "sorry not ready"
                 return 0
             else:
-                while not B.is_over():
+                counter=0
+                while not B.is_over() and counter<1000:
                     B.make_move(cpu_1.make_move(B))
                     if B.active == current_player:
                         continue
@@ -173,10 +174,17 @@ def main():
                     while B.active == current_player and not B.is_over():
                         B.make_move(cpu_2.make_move(B))
                     current_player = B.active
-                # if B.active == WHITE:
-                #     print "Congrats Black, you win!"
-                # else:
-                #     print "Congrats White, you win!"
+                    counter=counter+1
+                if counter==1000: #game gets stuck, both lose, terminate
+                    cpu_1.inform_endgame(B, True)
+                    cpu_2.inform_endgame(B, True)
+                else:
+                    cpu_1.inform_endgame(B, False)
+                    cpu_2.inform_endgame(B, False)
+                if B.active == WHITE:
+                    print "Congrats Black, you win!"
+                else:
+                    print "Congrats White, you win!"
 
 
 

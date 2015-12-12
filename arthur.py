@@ -356,6 +356,9 @@ def move_function(board, depth=3):
     #best_pair = max(pairs, key=lambda x: x[1])
     #return best_pair[0][0]
 
+def end_function(board, lose):
+    pass
+
 def get_move_strings(board):
     rfj = board.right_forward_jumps()
     lfj = board.left_forward_jumps()

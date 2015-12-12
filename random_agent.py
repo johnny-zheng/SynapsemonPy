@@ -7,3 +7,6 @@ import random
 
 def move_function(board):
     return random.choice(board.get_moves())
+
+def end_function(board, lose):
+    pass

@@ -8,7 +8,7 @@ from pybrain.supervised.trainers import BackpropTrainer
 # Constants
 BLACK, WHITE = 0, 1
 #neural net 
-net = NetworkReader.readFrom('SynapsemonPie/synapsemon.xml') 
+net = NetworkReader.readFrom('SynapsemonPie/synapsemon_self_black.xml') 
 
 def move_function(board):
     global net  
@@ -41,8 +41,8 @@ def move_function(board):
 
     trainer = BackpropTrainer(net, ds)
     trainer.train()
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon.xml')
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_copy.xml') 
+    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_self_black.xml')
+    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_self_black_copy.xml') 
     return best_move 
 
 def end_function(board, lose):
@@ -79,8 +79,8 @@ def end_function(board, lose):
     trainer = BackpropTrainer(net, ds)
     trainer.train()
 
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon.xml')
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_copy.xml') 
+    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_self_black.xml')
+    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_self_black_copy.xml') 
 
 
 def board_to_input(board):
