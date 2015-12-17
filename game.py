@@ -148,7 +148,7 @@ def main():
             print "Congrats White, you win!"
         return 0
     else:
-        stats=[0,0,0,0] #total, black win, white win, draw
+        #stats=[0,0,0,0] #total, black win, white win, draw
         agent_module = raw_input("Enter name of first agent module: ");
         __import__(agent_module)
         agent_module = sys.modules[agent_module]
@@ -159,9 +159,10 @@ def main():
         cpu_2 = agent.CheckersAgent(agent_module.move_function, agent_module.end_function)
         debug = raw_input("Would you like to step through game play? [Y/N]: ")
         debug = 1 if debug.lower()[0] == 'y' else 0
-        while stats[0] < TRAIN_GAMES:
+        #while stats[0] < TRAIN_GAMES:
+        while True:
             #print(stats[0])
-            stats[0]=stats[0]+1
+            #stats[0]=stats[0]+1
             B = checkers.CheckerBoard()
             current_player = B.active
             if debug:
@@ -185,15 +186,15 @@ def main():
                     cpu_1.inform_endgame(B, False)
                     cpu_2.inform_endgame(B, False)
                 if counter==MOVE_LIMIT:
-                    stats[3]=stats[3]+1
+                    #stats[3]=stats[3]+1
                     #print("TIE")
                 elif B.active == WHITE:
-                    stats[1]=stats[1]+1
+                    #stats[1]=stats[1]+1
                     #print "Congrats Black, you win!"
                 else:
-                    stats[2]=stats[2]+1
+                    #stats[2]=stats[2]+1
                     #print "Congrats White, you win!"
-        print (stats)
+        #print (stats)
 
 
 def game_over(board):
