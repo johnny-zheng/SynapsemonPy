@@ -12,6 +12,8 @@ import agent
 import sys
 
 BLACK, WHITE = 0, 1
+MOVE_LIMIT = 50
+TRAIN_GAMES=100
 
 def main():
     print "***************************************************"
@@ -24,13 +26,12 @@ def main():
     print "\n"
 
     n = -1
-    while not n in [0, 1, 2]:
+    while not n in [0, 1, 2, 3]:
         n = raw_input("How many human players? (0, 1, 2): ")
         try:
             n = int(n)
         except ValueError:
             print "Please input 0, 1, or 2."
-
     if n == 2:
         B = checkers.CheckerBoard()
         print "Black moves first."
@@ -82,7 +83,6 @@ def main():
             print "Congrats White, you win!"
 
         return 0
-
 
     elif n == 1:
         agent_module = raw_input("Enter name of agent module: ");
@@ -148,6 +148,7 @@ def main():
             print "Congrats White, you win!"
         return 0
     else:
+        stats=[0,0,0,0] #total, black win, white win, draw
         agent_module = raw_input("Enter name of first agent module: ");
         __import__(agent_module)
         agent_module = sys.modules[agent_module]
@@ -158,7 +159,9 @@ def main():
         cpu_2 = agent.CheckersAgent(agent_module.move_function, agent_module.end_function)
         debug = raw_input("Would you like to step through game play? [Y/N]: ")
         debug = 1 if debug.lower()[0] == 'y' else 0
-        while True:
+        while stats[0] < TRAIN_GAMES:
+            #print(stats[0])
+            stats[0]=stats[0]+1
             B = checkers.CheckerBoard()
             current_player = B.active
             if debug:
@@ -166,7 +169,7 @@ def main():
                 return 0
             else:
                 counter=0
-                while not B.is_over() and counter<1000:
+                while not B.is_over() and counter<MOVE_LIMIT:
                     B.make_move(cpu_1.make_move(B))
                     if B.active == current_player:
                         continue
@@ -175,17 +178,22 @@ def main():
                         B.make_move(cpu_2.make_move(B))
                     current_player = B.active
                     counter=counter+1
-                if counter==1000: #game gets stuck, both lose, terminate
+                if counter==MOVE_LIMIT: #game gets stuck, both lose, terminate
                     cpu_1.inform_endgame(B, True)
                     cpu_2.inform_endgame(B, True)
                 else:
                     cpu_1.inform_endgame(B, False)
                     cpu_2.inform_endgame(B, False)
-                # if B.active == WHITE:
-                #     print "Congrats Black, you win!"
-                # else:
-                #     print "Congrats White, you win!"
-
+                if counter==MOVE_LIMIT:
+                    stats[3]=stats[3]+1
+                    #print("TIE")
+                elif B.active == WHITE:
+                    stats[1]=stats[1]+1
+                    #print "Congrats Black, you win!"
+                else:
+                    stats[2]=stats[2]+1
+                    #print "Congrats White, you win!"
+        print (stats)
 
 
 def game_over(board):

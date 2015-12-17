@@ -38,12 +38,16 @@ class CheckerBoard:
         self.active = BLACK
         self.passive = WHITE
 
-        self.forward[BLACK] = 0x1eff
+        #self.forward[BLACK] = 0x1eff
+        #self.forward[BLACK] = 0x0009 #small board
+        self.forward[BLACK] = 0x0006 #small board
         self.backward[BLACK] = 0
         self.pieces[BLACK] = self.forward[BLACK] | self.backward[BLACK]
 
         self.forward[WHITE] = 0
-        self.backward[WHITE] = 0x7fbc00000
+        #self.backward[WHITE] = 0x7fbc00000
+        #self.backward[WHITE] = 0x480000000 #small board
+        self.backward[WHITE] = 0x300000000 #small board
         self.pieces[WHITE] = self.forward[WHITE] | self.backward[WHITE]
 
         self.empty = UNUSED_BITS ^ (2**36 - 1) ^ (self.pieces[BLACK] | self.pieces[WHITE])

@@ -41,8 +41,8 @@ def move_function(board):
 
     trainer = BackpropTrainer(net, ds)
     trainer.train()
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_random_white.xml')
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_random_white_copy.xml') 
+    #NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_random_white.xml')
+    #NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_random_white_copy.xml') 
     return best_move 
 
 def end_function(board, lose):
@@ -79,8 +79,8 @@ def end_function(board, lose):
     trainer = BackpropTrainer(net, ds)
     trainer.train()
 
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_random_white.xml')
-    NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_random_white_copy.xml') 
+    #NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_random_white.xml')
+    #NetworkWriter.writeToFile(net, 'SynapsemonPie/synapsemon_random_white_copy.xml') 
 
 
 def board_to_input(board):
