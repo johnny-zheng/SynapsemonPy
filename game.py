@@ -12,7 +12,7 @@ import agent
 import sys
 
 BLACK, WHITE = 0, 1
-MOVE_LIMIT = 50
+MOVE_LIMIT = 100
 TRAIN_GAMES=100
 
 def main():
