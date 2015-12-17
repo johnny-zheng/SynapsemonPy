@@ -185,13 +185,13 @@ def main():
                 else:
                     cpu_1.inform_endgame(B, False)
                     cpu_2.inform_endgame(B, False)
-                if counter==MOVE_LIMIT:
+                #if counter==MOVE_LIMIT:
                     #stats[3]=stats[3]+1
                     #print("TIE")
-                elif B.active == WHITE:
+                #elif B.active == WHITE:
                     #stats[1]=stats[1]+1
                     #print "Congrats Black, you win!"
-                else:
+                #else:
                     #stats[2]=stats[2]+1
                     #print "Congrats White, you win!"
         #print (stats)
