@@ -41,7 +41,7 @@ def move_function(board):
 
     trainer = BackpropTrainer(net, ds)
     trainer.train()
-    NetworkWriter.writeToFile(net, 'CheckersMini/synapsemon_random_white_mini_140.xml'
+    NetworkWriter.writeToFile(net, 'CheckersMini/synapsemon_random_white_mini_140.xml')
     NetworkWriter.writeToFile(net, 'CheckersMini/synapsemon_random_white_mini_140_copy.xml') 
     return best_move 
 
@@ -79,7 +79,7 @@ def end_function(board, lose):
     trainer = BackpropTrainer(net, ds)
     trainer.train()
 
-    NetworkWriter.writeToFile(net, 'CheckersMini/synapsemon_random_white_mini_140.xml'
+    NetworkWriter.writeToFile(net, 'CheckersMini/synapsemon_random_white_mini_140.xml')
     NetworkWriter.writeToFile(net, 'CheckersMini/synapsemon_random_white_mini_140_copy.xml') 
 
 
